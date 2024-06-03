@@ -1,0 +1,294 @@
+body{
+    margin: 0 auto;
+    width: 100%;
+    font-family: 'Lato';
+    color: #333;
+}
+
+.icon-cart{
+    width: 40px;
+    height: 40px;
+    stroke: #000;
+	
+}
+
+.icon-cart:hover{
+    cursor: pointer;
+}
+
+img{
+    max-width: 100%;
+}
+
+/* Header */
+header{
+    display: flex;
+    justify-content: space-between;
+   
+	width: 100%;
+	
+	background-color:navy;
+	border-radius: 1.5%;
+	color:#FFFFFF;
+}
+
+.container-icon{
+    position: relative;
+}
+
+.count-products{
+    position: absolute;
+    top: 55%;
+    right: 0;
+
+    background-color: #000;
+    color: #fff;
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+
+#contador-productos{
+    font-size: 12px;
+}
+
+.container-cart-products{
+    position: absolute;
+    top: 50px;
+    right: 0;
+
+    background-color: #fff;
+    width: 400px;
+    z-index: 1;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.20);
+    border-radius: 10px;
+    
+}
+
+.cart-product{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 30px;
+
+    border-bottom: 1px solid rgba(0, 0, 0, 0.20);
+
+}
+
+.info-cart-product{
+    display: flex;
+    justify-content: space-between;
+    flex: 0.8;
+	color:black;
+}
+
+.titulo-producto-carrito{
+	color: black;
+    font-size: 20px;
+}
+
+.precio-producto-carrito{
+    font-weight: 700;
+    font-size: 20px;
+    margin-left: 10px;
+	color: black;
+}
+
+.cantidad-producto-carrito{
+    font-weight: 400;
+    font-size: 20px;
+	color:black;
+}
+
+.icon-close{
+    width: 25px;
+    height: 25px;
+	color:red;
+}
+
+.icon-close:hover{
+    stroke: red;
+    cursor: pointer;
+}
+
+.cart-total{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    gap: 20px;
+	
+}
+
+.cart-total h3{
+    font-size: 20px;
+    font-weight: 700;
+	color: black;
+	
+}
+
+.total-pagar{
+    font-size: 20px;
+    font-weight: 900;
+	color:black;
+}
+
+.hidden-cart{
+    display: none;
+}
+
+.container-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #fff;
+    transition: transform 0.3s ease;
+}
+
+.item:hover {
+    transform: translateY(-5px);
+}
+
+.item figure {
+    margin: 0;
+    padding: 10px;
+    text-align: center;
+}
+
+.item img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.info-product {
+    padding: 15px;
+    text-align: center;
+}
+
+.info-product h2 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.info-product .price {
+    font-size: 16px;
+    color: #555;
+}
+
+.btn-add-cart {
+    background-color: #6200ea;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Para que el botón se ajuste automáticamente al final del contenedor */
+}
+
+.btn-add-cart:hover {
+    background-color: #3700b3;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .container-items {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .container-items {
+        grid-template-columns: 1fr;
+    }
+}
+
+  /*:::::Pie de Pagina*/
+/* Estilos para el pie de página */
+.pie-pagina {
+    width: 100%; /* Ancho completo */
+    background-color: navy; /* Color de fondo */
+}
+
+/* Estilos para el primer grupo dentro del pie de página */
+.pie-pagina .grupo-1 {
+    width: 100%; /* Ancho completo */
+    max-width: 1200px; /* Ancho máximo */
+    margin: auto; /* Centrar horizontalmente */
+    display: grid; /* Usar modelo de caja de rejilla */
+    grid-template-columns: repeat(3, 1fr); /* Tres columnas con igual ancho */
+    grid-gap: 50px; /* Espacio entre las columnas */
+    padding: 45px 0px; /* Relleno superior e inferior */
+}
+
+/* Estilos para las cajas dentro del primer grupo del pie de página */
+.pie-pagina .grupo-1 .box figure {
+    width: 100%; /* Ancho completo */
+    height: 100%; /* Altura completa */
+    display: flex; /* Mostrar como caja flexible */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+}
+
+/* Estilos para las imágenes dentro de las cajas del primer grupo del pie de página */
+.pie-pagina .grupo-1 .box figure img {
+    width: 100px; /* Ancho de la imagen */
+}
+
+/* Estilos para los títulos dentro de las cajas del primer grupo del pie de página */
+.pie-pagina .grupo-1 .box h2 {
+    color: #fff; /* Color de texto */
+    margin-bottom: 25px; /* Margen inferior */
+    font-size: 20px; /* Tamaño de fuente */
+}
+
+/* Estilos para los párrafos dentro de las cajas del primer grupo del pie de página */
+.pie-pagina .grupo-1 .box p {
+    color: #efefef; /* Color de texto */
+    margin-bottom: 10px; /* Margen inferior */
+}
+
+/* Estilos para los enlaces de redes sociales dentro del primer grupo del pie de página */
+.pie-pagina .grupo-1 .red-social a {
+    display: inline-block; /* Mostrar como bloque en línea */
+    text-decoration: none; /* Sin subrayado */
+    width: 45px; /* Ancho */
+    height: 45px; /* Altura */
+    line-height: 45px; /* Altura de línea */
+    color: #fff; /* Color de texto */
+    margin-right: 10px; /* Margen derecho */
+    background-color: #0a1a2a; /* Color de fondo */
+    text-align: center; /* Texto centrado */
+    transition: all 300ms ease; /* Transición suave */
+}
+
+/* Estilos al pasar el cursor sobre los enlaces de redes sociales dentro del primer grupo del pie de página */
+.pie-pagina .grupo-1 .red-social a:hover {
+    color: aqua; /* Color de texto al pasar el cursor */
+}
+
+/* Estilos para el segundo grupo dentro del pie de página */
+.pie-pagina .grupo-2 {
+    background-color: #0a1a2a; /* Color de fondo */
+    padding: 15px 10px; /* Relleno */
+    text-align: center; /* Texto centrado */
+    color: #fff; /* Color de texto */
+}
+
+/* Estilos para el texto pequeño dentro del segundo grupo del pie de página */
+.pie-pagina .grupo-2 small {
+    font-size: 15px; /* Tamaño de fuente */
+}
+
