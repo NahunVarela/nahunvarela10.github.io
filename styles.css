@@ -202,6 +202,28 @@ header{
     background-color: #3700b3;
 }
 
+
+
+/* Contenedor de la imagen */
+.image-container {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+}
+
+/* Imagen responsiva */
+.responsive-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+
+
+
 /* Media Queries */
 @media (max-width: 768px) {
     .container-items {
@@ -291,4 +313,3 @@ header{
 .pie-pagina .grupo-2 small {
     font-size: 15px; /* Tamaño de fuente */
 }
-
