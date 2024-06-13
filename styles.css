@@ -237,7 +237,7 @@ header{
     }
 }
 
-  /:::::Pie de Pagina/
+  /*:::::Pie de Pagina*/
 /* Estilos para el pie de página */
 .pie-pagina {
     width: 100%; /* Ancho completo */
@@ -311,5 +311,6 @@ header{
 
 /* Estilos para el texto pequeño dentro del segundo grupo del pie de página */
 .pie-pagina .grupo-2 small {
-    font-size: 15px; /* Tamaño de fuente */
+    font-size: 15px; /* Tamaño de fuente */
 }
+
