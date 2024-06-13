@@ -40,8 +40,9 @@ header {
 
 .count-products {
     position: absolute;
-    top: -50%; /* Ajuste vertical */
-    right: 0;
+    top: 50%; /* Ajuste vertical al centro */
+    transform: translateY(-50%);
+    right: 10px; /* Ajuste derecho */
     background-color: #000;
     color: #fff;
     width: 25px;
@@ -232,7 +233,8 @@ header {
     }
 
     .count-products {
-        top: -25%; /* Ajuste vertical */
+        top: 50%; /* Ajuste vertical al centro */
+        transform: translateY(-50%);
     }
 
     .container-items {
@@ -256,7 +258,8 @@ header {
     }
 
     .count-products {
-        top: -25%; /* Ajuste vertical */
+        top: 50%; /* Ajuste vertical al centro */
+        transform: translateY(-50%);
     }
 
     .container-items {
