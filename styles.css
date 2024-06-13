@@ -226,6 +226,22 @@ header {
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+
+    .container-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .icon-cart {
+        width: 30px;
+        height: 30px;
+    }
+
     .container-items {
         grid-template-columns: 1fr;
     }
