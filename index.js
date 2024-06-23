@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Selecciona elementos del DOM necesarios para la funcionalidad del carrito
     const cartIcon = document.querySelector('.container-cart-icon');
     const cart = document.querySelector('.container-cart-products');
     const addCartButtons = document.querySelectorAll('.btn-add-cart');
@@ -7,8 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPagar = document.querySelector('.total-pagar');
     const contadorProductos = document.getElementById('contador-productos');
 
-    // Carga los artículos del carrito desde localStorage, o inicializa como un array vacío si no existen
+    // Cargar los artículos del carrito desde localStorage
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Función para guardar los artículos del carrito en localStorage
+    function saveCartItems() {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
 
     // Añade un evento para mostrar/ocultar el carrito al hacer clic en el ícono del carrito
     cartIcon.addEventListener('click', () => {
@@ -116,11 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.cart-empty').classList.add('hidden');
             document.querySelector('.cart-total').classList.remove('hidden');
         }
-    }
-
-    // Función para guardar los artículos del carrito en localStorage
-    function saveCartItems() {
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }
 
     // Carga y renderiza los datos del carrito desde localStorage al cargar la página
