@@ -1,31 +1,40 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Selecciona elementos del DOM necesarios para la funcionalidad del carrito
     const cartIcon = document.querySelector('.container-cart-icon');
     const cart = document.querySelector('.container-cart-products');
     const addCartButtons = document.querySelectorAll('.btn-add-cart');
     const cartProductsList = document.getElementById('cart-products-list');
     const totalPagar = document.querySelector('.total-pagar');
     const contadorProductos = document.getElementById('contador-productos');
-    let cartItems = [];
 
+    // Carga los artículos del carrito desde localStorage, o inicializa como un array vacío si no existen
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+
+    // Añade un evento para mostrar/ocultar el carrito al hacer clic en el ícono del carrito
     cartIcon.addEventListener('click', () => {
         cart.classList.toggle('hidden-cart');
     });
 
+    // Añade eventos a los botones de agregar al carrito
     addCartButtons.forEach(button => {
         button.addEventListener('click', addToCart);
     });
 
+    // Función para agregar productos al carrito
     function addToCart(event) {
         const button = event.target;
         const item = button.closest('.item');
         const title = item.querySelector('h2').textContent;
         const price = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
 
+        // Verifica si el producto ya está en el carrito
         const existingItem = cartItems.find(product => product.title === title);
 
         if (existingItem) {
+            // Incrementa la cantidad si ya existe
             existingItem.quantity++;
         } else {
+            // Añade el nuevo producto al carrito
             cartItems.push({
                 title,
                 price,
@@ -33,12 +42,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
+        // Guarda el estado actualizado del carrito en localStorage y vuelve a renderizar el carrito
+        saveCartItems();
         renderCart();
     }
 
+    // Función para renderizar el contenido del carrito
     function renderCart() {
+        // Limpia la lista actual de productos del carrito
         cartProductsList.innerHTML = '';
 
+        // Añade cada producto del carrito al DOM
         cartItems.forEach(item => {
             const cartProduct = document.createElement('div');
             cartProduct.classList.add('cart-product');
@@ -57,28 +71,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cartProductsList.appendChild(cartProduct);
 
+            // Añade evento para incrementar la cantidad del producto
             cartProduct.querySelector('.btn-increase').addEventListener('click', () => {
                 item.quantity++;
+                saveCartItems();
                 renderCart();
             });
 
+            // Añade evento para decrementar la cantidad del producto
             cartProduct.querySelector('.btn-decrease').addEventListener('click', () => {
                 item.quantity--;
                 if (item.quantity === 0) {
                     cartItems = cartItems.filter(product => product.title !== item.title);
                 }
+                saveCartItems();
                 renderCart();
             });
 
+            // Añade evento para eliminar el producto del carrito
             cartProduct.querySelector('.icon-close').addEventListener('click', () => {
                 cartItems = cartItems.filter(product => product.title !== item.title);
+                saveCartItems();
                 renderCart();
             });
         });
 
+        // Actualiza el resumen del carrito
         updateCartSummary();
     }
 
+    // Función para actualizar el resumen del carrito
     function updateCartSummary() {
         const total = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
         totalPagar.textContent = `$${total.toFixed(2)}`;
@@ -86,6 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
         contadorProductos.textContent = totalCount;
 
+        // Muestra u oculta los mensajes de carrito vacío y el total del carrito
         if (cartItems.length === 0) {
             document.querySelector('.cart-empty').classList.remove('hidden');
             document.querySelector('.cart-total').classList.add('hidden');
@@ -94,4 +117,12 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelector('.cart-total').classList.remove('hidden');
         }
     }
+
+    // Función para guardar los artículos del carrito en localStorage
+    function saveCartItems() {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
+
+    // Carga y renderiza los datos del carrito desde localStorage al cargar la página
+    renderCart();
 });
