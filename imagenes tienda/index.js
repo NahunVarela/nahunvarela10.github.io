@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Elementos del DOM que vamos a manipular
     const cartIcon = document.querySelector('.container-cart-icon');
     const cart = document.querySelector('.container-cart-products');
     const addCartButtons = document.querySelectorAll('.btn-add-cart');
@@ -6,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const totalPagar = document.querySelector('.total-pagar');
     const contadorProductos = document.getElementById('contador-productos');
 
-    // Cargar los artículos del carrito desde localStorage
+    // Cargar los artículos del carrito desde localStorage o iniciar vacío si no hay datos
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
     // Función para guardar los artículos del carrito en localStorage
@@ -16,10 +17,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para renderizar el contenido del carrito
     function renderCart() {
-        // Limpia la lista actual de productos del carrito
+        // Limpiamos la lista actual de productos del carrito
         cartProductsList.innerHTML = '';
 
-        // Añade cada producto del carrito al DOM
+        // Añadimos cada producto del carrito al DOM
         cartItems.forEach(item => {
             const cartProduct = document.createElement('div');
             cartProduct.classList.add('cart-product');
@@ -38,14 +39,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cartProductsList.appendChild(cartProduct);
 
-            // Añade evento para incrementar la cantidad del producto
+            // Añadimos evento para incrementar la cantidad del producto
             cartProduct.querySelector('.btn-increase').addEventListener('click', () => {
                 item.quantity++;
                 saveCartItems();
                 renderCart();
             });
 
-            // Añade evento para decrementar la cantidad del producto
+            // Añadimos evento para decrementar la cantidad del producto
             cartProduct.querySelector('.btn-decrease').addEventListener('click', () => {
                 item.quantity--;
                 if (item.quantity === 0) {
@@ -55,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 renderCart();
             });
 
-            // Añade evento para eliminar el producto del carrito
+            // Añadimos evento para eliminar el producto del carrito
             cartProduct.querySelector('.icon-close').addEventListener('click', () => {
                 cartItems = cartItems.filter(product => product.title !== item.title);
                 saveCartItems();
@@ -63,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Actualiza el resumen del carrito
+        // Actualizamos el resumen del carrito
         updateCartSummary();
     }
 
@@ -75,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
         contadorProductos.textContent = totalCount;
 
-        // Muestra u oculta los mensajes de carrito vacío y el total del carrito
+        // Mostramos u ocultamos los mensajes de carrito vacío y el total del carrito
         if (cartItems.length === 0) {
             document.querySelector('.cart-empty').classList.remove('hidden');
             document.querySelector('.cart-total').classList.add('hidden');
@@ -85,12 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Añade un evento para mostrar/ocultar el carrito al hacer clic en el ícono del carrito
+    // Evento para mostrar/ocultar el carrito al hacer clic en el ícono del carrito
     cartIcon.addEventListener('click', () => {
         cart.classList.toggle('hidden-cart');
     });
 
-    // Añade eventos a los botones de agregar al carrito
+    // Eventos para los botones de agregar al carrito
     addCartButtons.forEach(button => {
         button.addEventListener('click', addToCart);
     });
@@ -102,14 +103,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const title = item.querySelector('h2').textContent;
         const price = parseFloat(item.querySelector('.price').textContent.replace('$', ''));
 
-        // Verifica si el producto ya está en el carrito
+        // Verificamos si el producto ya está en el carrito
         const existingItem = cartItems.find(product => product.title === title);
 
         if (existingItem) {
-            // Incrementa la cantidad si ya existe
+            // Incrementamos la cantidad si ya existe
             existingItem.quantity++;
         } else {
-            // Añade el nuevo producto al carrito
+            // Agregamos el nuevo producto al carrito
             cartItems.push({
                 title,
                 price,
@@ -117,11 +118,41 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Guarda el estado actualizado del carrito en localStorage y vuelve a renderizar el carrito
+        // Guardamos el estado actualizado del carrito en localStorage y renderizamos el carrito
         saveCartItems();
         renderCart();
     }
 
-    // Carga y renderiza los datos del carrito desde localStorage al cargar la página
+    // Script para mostrar/ocultar el formulario de compra al hacer clic en "Finalizar Compra"
+    const btnComprar = document.getElementById('btn-comprar');
+    const formularioCompra = document.getElementById('formulario-compra');
+    const btnConfirmarCompra = document.getElementById('btn-confirmar-compra');
+
+    btnComprar.addEventListener('click', () => {
+        formularioCompra.classList.toggle('hidden');
+    });
+
+    btnConfirmarCompra.addEventListener('click', () => {
+        // Aquí puedes agregar la lógica para enviar los datos del formulario al servidor
+        // Por ahora, simplemente vaciamos el carrito y mostramos un mensaje de compra finalizada
+
+        // Vaciar el carrito
+        cartItems = [];
+        saveCartItems();
+        renderCart();
+
+        // Mostrar mensaje de compra finalizada
+        const mensajeCompra = document.createElement('p');
+        mensajeCompra.textContent = '¡Compra finalizada! Gracias por tu compra.';
+        mensajeCompra.style.fontWeight = 'bold';
+        mensajeCompra.style.fontSize = '18px';
+        mensajeCompra.style.marginTop = '20px';
+        document.querySelector('.container-items').appendChild(mensajeCompra);
+
+        // Ocultar formulario de compra
+        formularioCompra.classList.add('hidden');
+    });
+
+    // Cargamos y renderizamos los datos del carrito desde localStorage al cargar la página
     renderCart();
 });
