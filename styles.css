@@ -335,34 +335,60 @@ header {
 .pie-pagina .grupo-2 small {
     font-size: 15px;
 }
- /* Estilos adicionales, adapta según tu diseño */
-        .hidden {
-            display: none;
-        }
-        .container-formulario {
-            margin-top: 20px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            background-color: #f9f9f9;
-        }
-        .container-formulario label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        .container-formulario input[type="text"],
-        .container-formulario input[type="email"] {
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            box-sizing: border-box;
-        }
-        .container-formulario button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .container-formulario button:hover {
-            background-color: #45a049;
-        }
+      /* Estilos generales */
+.hidden {
+    display: none;
+}
+
+.container-formulario {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.container-formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.container-formulario input[type="text"],
+.container-formulario input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.container-formulario button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.container-formulario button:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para pantallas grandes */
+@media (min-width: 768px) {
+    .container-formulario {
+        max-width: 600px;
+        margin: 20px auto;
+    }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 767px) {
+    .container-formulario {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .container-formulario button {
+        width: 100%;
+        padding: 12px;
+    }
+}
