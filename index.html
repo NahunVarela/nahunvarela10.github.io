@@ -1,11 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionales, adapta según tu diseño */
+        .hidden {
+            display: none;
+        }
+        .container-formulario {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+        .container-formulario label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .container-formulario input[type="text"],
+        .container-formulario input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .container-formulario button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .container-formulario button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -27,6 +60,19 @@
                     <span class="total-pagar">$0.00</span>
                 </div>
                 <p class="cart-empty">El carrito está vacío</p>
+                <!-- Botón para proceder con la compra -->
+                <button id="btn-comprar" class="btn-comprar">Finalizar Compra</button>
+                <!-- Formulario de facturación -->
+                <div id="formulario-compra" class="container-formulario hidden">
+                    <h3>Información de Facturación</h3>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" placeholder="Ingrese su nombre" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="Ingrese su email" required>
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" placeholder="Ingrese su dirección" required>
+                    <button type="submit" id="btn-confirmar-compra">Confirmar Compra</button>
+                </div>
             </div>
         </div>
     </header>
@@ -166,7 +212,6 @@
     <div class="image-container">
         <img src="imagenes tienda/anuncio s24ul.jpg" alt="Descripción de la imagen" class="responsive-image">
     </div>
-    <script src="imagenes tienda/index.js"></script>
     <br>
     <br>
     <br>
@@ -197,5 +242,7 @@
             <small>&copy; 2024 <b>Nahun Varela </b> - Todos los Derechos Reservados.</small>
         </div>
     </footer>
+    <script src="imagenes tienda/index.js"></script>
+   
 </body>
 </html>
